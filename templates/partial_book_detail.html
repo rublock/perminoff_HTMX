@@ -1,0 +1,62 @@
+<tr>
+    <!-- Ячейка номера книги -->
+    <td>
+        {{ book.id }}
+    </td>
+
+    <!-- Ячейка названия книги -->
+    <td>
+        {{ book.title }}
+    </td>
+
+    <!-- Ячейка автора книги -->
+    <td>
+        {{ book.author }}
+    </td>
+
+    <!-- Ячейка цены книги -->
+    <td>
+        {{ book.price }}
+    </td>
+
+    <!-- Ячейка состояния -->
+    <td>
+        {% if not book.read %}
+        <!-- Кнопка "Unread" -->
+        <button class="disbtn"
+                hx-put="{% url 'update_book_status' book.id %}"
+                hx-target="closest tr"
+                hx-swap="outerHTML" >
+            Unread
+        </button>
+        {% else %}
+        <!-- Кнопка "Read" -->
+        <button class="disbtn"
+                hx-put="{% url 'update_book_status' book.id %}"
+                hx-target="closest tr"
+                hx-swap="outerHTML" >
+            Read
+         </button>
+        {% endif %}
+    </td>
+
+    <!--  Ячейка кнопок действия -->
+    <td>
+        <!-- Кнопка "Edit" -->
+    <button class="disbtn"
+            hx-get="{% url 'update_book_details' book.id %}"
+            hx-target="closest tr"
+            hx-swap="outerHTML" >
+        Edit
+    </button>
+
+        <!-- Кнопка "Delete" -->
+    <button class="disbtn"
+            hx-delete="{% url 'delete_book' book.id %}"
+            hx-target="closest tr"
+            hx-swap="outerHTML"
+            hx-confirm="Are you sure you wish to delete this book?" >
+        Delete
+    </button>
+    </td>
+</tr>

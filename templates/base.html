@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Books{% endblock title %}</title>
+</head>
+
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+
+<div>
+    <div>
+        <div>
+            <!-- Таблица книг -->
+            <form>
+            {% include "partial_create_book_form.html" %}
+
+                <table>
+                    <thead>
+                    <tr>
+                        <!-- Заголовки столбцов таблицы -->
+
+                        <!-- Заголовок номера книги -->
+                        <th scope="col" style="width: 10%">
+                            <small>
+                                No.
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='id' direction='descend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇓
+                                </a>
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='id' direction='ascend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇑
+                                </a>
+                            </small>
+                        </th>
+
+                        <!-- Заголовок названия книги -->
+                        <th scope="col" style="width: 26%">
+                            <small>
+                                Title
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='title' direction='descend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇓
+                                </a>
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='title' direction='ascend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇑
+                                </a>
+                            </small>
+                        </th>
+
+                        <!-- Заголовок автора книги -->
+                        <th scope="col" style="width: 26%">
+                            <small>
+                                Author
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='author' direction='descend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇓
+                                </a>
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='author' direction='ascend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇑
+                                </a>
+                            </small>
+                        </th>
+
+                        <!-- Заголовок цены книги -->
+                        <th scope="col" style="width: 11%">
+                            <small>
+                                Price ($)
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='price' direction='descend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇓
+                                </a>
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='price' direction='ascend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇑
+                                </a>
+                            </small>
+                        </th>
+
+                        <!-- Заголовок статуса книги -->
+                        <th scope="col" style="width: 11%">
+                            <small>
+                                Status
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='read' direction='descend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇓
+                                </a>
+                                <a href=""
+                                   hx-get="{% url 'book_list_sort' filter='read' direction='ascend' %}"
+                                   hx-target="#book-list"
+                                   hx-swap="innerHTML">
+                                    ⇑
+                                </a>
+                            </small>
+                        </th>
+
+                    </tr>
+                    </thead>
+
+                    <!-- Список книг -->
+                    <tbody id="book-list">
+                    {% include "partial_book_list.html" %}
+                    </tbody>
+
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/htmx.org@1.9.4"></script>
+<script>
+    function cngElementsAtr(cls, atr, val){
+        var elems = document.getElementsByClassName(cls);
+        for(var i = 0; i < elems.length; i++) {
+            elems[i][atr] = val;
+        }
+    }
+    document.body.addEventListener('htmx:afterRequest', (event) => {
+        path_str = event.detail.pathInfo.requestPath;
+        if(path_str.includes('create_book')){
+            cngElementsAtr('clrtxt', 'value', '');
+        }
+    });
+</script>
+
+<script>
+    function cngElementsAtr(cls, atr, val){
+        var elems = document.getElementsByClassName(cls);
+        for(var i = 0; i < elems.length; i++) {
+            elems[i][atr] = val;
+        }
+    }
+    document.body.addEventListener('htmx:afterRequest', (event) => {
+        path_str = event.detail.pathInfo.requestPath;
+        if(path_str.includes('create_book')){
+            cngElementsAtr('clrtxt', 'value', '');
+        }else if(path_str.includes('update_book_details')){
+            if(event.detail.requestConfig.verb === 'get'){
+                cngElementsAtr('disbtn', 'disabled', true);
+            }else{
+                cngElementsAtr('disbtn', 'disabled', false);
+            }
+        }else if(path_str.includes('book_detail')){
+            cngElementsAtr('disbtn', 'disabled', false);
+        }
+    });
+</script>
+
+</body>
+</html>
