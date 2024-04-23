@@ -20,28 +20,28 @@ msgstr ""
 
 #: books/forms.py:7 books/models.py:6 templates/base.html:50
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: books/forms.py:8 books/models.py:7 templates/base.html:69
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: books/forms.py:9 books/models.py:8
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: books/models.py:9 templates/partial_book_detail.html:39
 #: templates/partial_book_update_form.html:33
 msgid "Read"
-msgstr ""
+msgstr "Прочитано"
 
 #: core/settings.py:89
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
 #: core/settings.py:90
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: templates/base.html:7
 msgid "Books"
@@ -52,42 +52,44 @@ msgid "No."
 msgstr ""
 
 #: templates/base.html:88
+#, fuzzy
+#| msgid "Price"
 msgid "Price ($)"
-msgstr ""
+msgstr "Цена"
 
 #: templates/base.html:107
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: templates/base.html:126
 msgid "Actions"
-msgstr ""
+msgstr "Действия"
 
 #: templates/partial_book_detail.html:31
 #: templates/partial_book_update_form.html:28
 msgid "Unread"
-msgstr ""
+msgstr "Не прочитана"
 
 #: templates/partial_book_detail.html:51
 msgid "Edit"
-msgstr ""
+msgstr "Изменить"
 
 #: templates/partial_book_detail.html:59
 msgid "Are you sure you wish to delete this book?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить эту книгу?"
 
 #: templates/partial_book_detail.html:60
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: templates/partial_book_update_form.html:47
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: templates/partial_book_update_form.html:54
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
 #: templates/partial_create_book_form.html:23
 msgid "Add book"
-msgstr ""
+msgstr "Добавить"
